@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>E V O L V E – People’s Choice Awards</title>
+<style>
+body{
+  font-family:Arial,sans-serif;
+  max-width:900px;
+  margin:20px auto;
+  padding:20px;
+  background:#f5f7fb;
+}
+.card{
+  background:white;
+  border-radius:16px;
+  padding:30px;
+  box-shadow:0 4px 20px rgba(0,0,0,.08);
+}
+h1,h2{text-align:center}
+input,select{
+  width:100%;
+  padding:12px;
+  margin-top:8px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+label{
+  display:block;
+  margin-top:18px;
+  font-weight:bold;
+}
+button{
+  margin-top:30px;
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:10px;
+  font-size:18px;
+  cursor:pointer;
+}
+#msg{
+  margin-top:20px;
+  text-align:center;
+  font-weight:bold;
+}
+.progress{
+  height:10px;
+  background:#eee;
+  border-radius:20px;
+  margin:20px 0;
+}
+.bar{
+  height:100%;
+  width:0%;
+  background:#4caf50;
+  border-radius:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h2>Rotaract Club of Pune Kalyani Nagar presents</h2>
+<h1>🏆 E V O L V E – People’s Choice Awards 🏆</h1>
+
+<label>Your Email</label>
+<input type="email" id="email" placeholder="Enter your email" required>
+
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<div id="form"></div>
+
+<button onclick="submitVote()">Submit Vote</button>
+<div id="msg"></div>
+</div>
+
+<script>
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbxGuhAUOffOlsZygn6UiEjmaOqs-kPKeaPpan7fAlB1cEIOpcRQBY4WgMFfIv90Mh6dPA/exec";
+
+const nominees = [
+"Salim Mulani","Dhiraj Nikam","Avanti Barhate","Nida Baig","Sahil Aghav",
+"ANUJ PAUL","Vedant Buge","Aniket Jagtap","Mrunal Bharati",
+"Abhijit Barangule","Siddharth Pattanshetti","Rishikesh Kadre",
+"Siddhant Thopate","Siddhesh Gaikwad","Ammar Shaikh",
+"Akanksha Solse","Bhakti Makhare","Shrikant Dhangar",
+"Annie Varhale","Onkar Dhame","Khushi Oswal",
+"Shrikant Kedari","Vaishnavi Thakur","Jay Agarwal","Nikhil Bhosale"
+];
+
+const awards = [
+"💘 District Event = Rishta Dekho Yojana Award",
+"🚿 Main Aa Raha Hoon Fiction Award",
+"📱 WhatsApp Pe Don, Ground Pe Gone Award",
+"🤯 Club Ka Jethalal Award",
+"🤷‍♀️ Club Ki Alia Bhatt Award",
+"📈 Club Ka Mutual Fund Award",
+"⏳ Club Ka Loading Screen Award",
+"🔋 Low Battery Human Award",
+"🎭 Ye Sab Doglapan Hai Award",
+"🏠 Abba Nahi Manenge Award"
+];
+
+const form = document.getElementById("form");
+
+awards.forEach((award,i)=>{
+  let label=document.createElement("label");
+  label.innerText=(i+1)+". "+award;
+
+  let select=document.createElement("select");
+  select.id="award"+i;
+  select.onchange=updateDropdowns;
+
+  form.appendChild(label);
+  form.appendChild(select);
+});
+
+function updateDropdowns(){
+  let selected=[];
+
+  awards.forEach((_,i)=>{
+    let v=document.getElementById("award"+i).value;
+    if(v) selected.push(v);
+  });
+
+  awards.forEach((_,i)=>{
+    let dd=document.getElementById("award"+i);
+    let current=dd.value;
+
+    dd.innerHTML='<option value="">Select nominee</option>';
+
+    nominees.forEach(name=>{
+      if(!selected.includes(name) || name===current){
+        let o=document.createElement("option");
+        o.value=name;
+        o.text=name;
+        if(name===current) o.selected=true;
+        dd.appendChild(o);
+      }
+    });
+  });
+
+  document.getElementById("bar").style.width =
+    (selected.length/awards.length*100)+"%";
+}
+
+function submitVote(){
+  const email=document.getElementById("email").value.trim();
+
+  if(!email){
+    alert("Please enter email");
+    return;
+  }
+
+  let votes=[];
+
+  for(let i=0;i<awards.length;i++){
+    let v=document.getElementById("award"+i).value;
+    if(!v){
+      alert("Complete all awards");
+      return;
+    }
+    votes.push(v);
+  }
+
+  fetch(SCRIPT_URL,{
+    method:"POST",
+    body:JSON.stringify({email,votes})
+  })
+  .then(r=>r.json())
+  .then(data=>{
+    document.getElementById("msg").innerText=data.message;
+    if(data.success){
+      document.querySelector("button").disabled=true;
+    }
+  })
+  .catch(()=>{
+    document.getElementById("msg").innerText=
+      "Error submitting vote";
+  });
+}
+
+updateDropdowns();
+</script>
+</body>
+</html>
