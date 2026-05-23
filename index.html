@@ -2,128 +2,140 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E V O L V E – People's Choice Awards</title>
-
 <style>
-*{
-  box-sizing:border-box;
-}
+  * { box-sizing: border-box; }
 
-body{
-  margin:0;
-  padding:20px;
-  min-height:100vh;
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#e8f0ff,#fdf6ff);
-}
-
-.card{
-  max-width:900px;
-  margin:auto;
-  background:rgba(255,255,255,.97);
-  border-radius:24px;
-  padding:35px;
-  box-shadow:0 12px 40px rgba(0,0,0,.12);
-}
-
-h1{
-  text-align:center;
-  margin:10px 0;
-  color:#1f2937;
-}
-
-h2{
-  text-align:center;
-  color:#6b7280;
-  font-weight:normal;
-  margin:0;
-}
-
-label{
-  display:block;
-  margin-top:22px;
-  font-weight:bold;
-  color:#111827;
-}
-
-.subtitle{
-  display:block;
-  font-size:13px;
-  color:#6b7280;
-  margin-top:4px;
-  font-style:italic;
-  font-weight:normal;
-}
-
-input,select{
-  width:100%;
-  padding:14px;
-  margin-top:10px;
-  border-radius:12px;
-  border:1px solid #d1d5db;
-  font-size:15px;
-}
-
-input:focus,select:focus{
-  outline:none;
-  border-color:#6366f1;
-  box-shadow:0 0 0 3px rgba(99,102,241,.15);
-}
-
-.progress-wrap{
-  margin:25px 0;
-}
-
-.progress{
-  height:12px;
-  background:#e5e7eb;
-  border-radius:999px;
-  overflow:hidden;
-}
-
-.bar{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#6366f1,#8b5cf6);
-  transition:.3s;
-}
-
-button{
-  width:100%;
-  margin-top:35px;
-  padding:16px;
-  border:none;
-  border-radius:14px;
-  background:linear-gradient(90deg,#4f46e5,#7c3aed);
-  color:white;
-  font-size:18px;
-  font-weight:bold;
-  cursor:pointer;
-  transition:.2s;
-}
-
-button:hover{
-  transform:translateY(-2px);
-}
-
-button:disabled{
-  background:gray;
-  cursor:not-allowed;
-  transform:none;
-}
-
-#msg{
-  margin-top:20px;
-  text-align:center;
-  font-weight:bold;
-}
-
-@media(max-width:768px){
-  .card{
-    padding:20px;
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e8f0ff, #fdf6ff);
+    min-height: 100vh;
+    padding: 20px;
   }
-}
+
+  .card {
+    max-width: 900px;
+    margin: auto;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    border: 1px solid rgba(255,255,255,0.5);
+  }
+
+  h1 {
+    text-align: center;
+    color: #1f2937;
+    margin-bottom: 8px;
+    font-size: 2rem;
+  }
+
+  h2 {
+    text-align: center;
+    color: #6b7280;
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+  }
+
+  .section-title {
+    color: #374151;
+    margin-top: 28px;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+
+  label {
+    display: block;
+    margin-top: 22px;
+    color: #111827;
+    font-weight: bold;
+    line-height: 1.4;
+  }
+
+  .subtitle {
+    display: block;
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: normal;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  input, select {
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+    transition: 0.25s;
+    background: #fff;
+  }
+
+  input:focus, select:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+  }
+
+  .progress-wrap {
+    margin: 25px 0;
+  }
+
+  .progress-text {
+    font-size: 14px;
+    color: #4b5563;
+    margin-bottom: 8px;
+  }
+
+  .progress {
+    height: 12px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    border-radius: 999px;
+    transition: width 0.3s ease;
+  }
+
+  button {
+    margin-top: 35px;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+  }
+
+  button:hover { transform: translateY(-2px); }
+  button:disabled { background: gray; cursor: not-allowed; }
+
+  #msg {
+    margin-top: 22px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  @media(max-width: 768px) {
+    .card { padding: 22px; }
+    h1 { font-size: 1.5rem; }
+  }
 </style>
 </head>
 <body>
@@ -133,226 +145,122 @@ button:disabled{
   <h1>🏆 E V O L V E – People's Choice Awards 🏆</h1>
 
   <label>Your Email</label>
-  <input
-    type="text"
-    id="email"
-    placeholder="Enter your email"
-    autocomplete="email"
-  >
+  <input type="email" id="email" placeholder="Enter your email" required>
 
   <div class="progress-wrap">
-    <div id="progressText">0/10 completed</div>
-    <div class="progress">
-      <div class="bar" id="bar"></div>
-    </div>
+    <div class="progress-text">Voting Progress: <span id="progressText">0/10</span></div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
   </div>
 
   <div id="form"></div>
 
-  <button id="submitBtn" onclick="submitVote()">
-    Submit Vote
-  </button>
-
+  <button onclick="submitVote()">Submit Vote</button>
   <div id="msg"></div>
 </div>
 
 <script>
-const SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbzT6Nyny_Z4sj8wQu94yqnvbG90iwIZC_qkGM7v8pvOLVZAZmnl0Ps2IE1LoyJMn8jpoA/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAqBJt-38BvtaYc9FL_d4z0uxq2jPXqxeYCFhTyOf_6E6xbE4LAQExX_GnzST7M6RRJw/exec";
 
 const nominees = [
-  "Salim Mulani",
-  "Dhiraj Nikam",
-  "Avanti Barhate",
-  "Nida Baig",
-  "Sahil Aghav",
-  "ANUJ PAUL",
-  "Vedant Buge",
-  "Aniket Jagtap",
-  "Mrunal Bharati",
-  "Abhijit Barangule",
-  "Siddharth Pattanshetti",
-  "Rishikesh Kadre",
-  "Siddhant Thopate",
-  "Siddhesh Gaikwad",
-  "Ammar Shaikh",
-  "Akanksha Solse",
-  "Bhakti Makhare",
-  "Shrikant Dhangar",
-  "Annie Varhale",
-  "Onkar Dhame",
-  "Khushi Oswal",
-  "Shrikant Kedari",
-  "Vaishnavi Thakur",
-  "Jay Agarwal",
-  "Nikhil Bhosale"
+  "Salim Mulani","Dhiraj Nikam","Avanti Barhate","Nida Baig","Sahil Aghav",
+  "ANUJ PAUL","Vedant Buge","Aniket Jagtap","Mrunal Bharati",
+  "Abhijit Barangule","Siddharth Pattanshetti","Rishikesh Kadre",
+  "Siddhant Thopate","Siddhesh Gaikwad","Ammar Shaikh",
+  "Akanksha Solse","Bhakti Makhare","Shrikant Dhangar",
+  "Annie Varhale","Onkar Dhame","Khushi Oswal",
+  "Shrikant Kedari","Vaishnavi Thakur","Jay Agarwal","Nikhil Bhosale"
 ];
 
 const awards = [
-{
-title:"💘 District Event = Rishta Dekho Yojana Award",
-desc:"Attendance suspiciously high at district events 👀"
-},
-{
-title:"🚿 Main Aa Raha Hoon Fiction Award",
-desc:"written by someone still in towel"
-},
-{
-title:"📱 WhatsApp Pe Don, Ground Pe Gone Award",
-desc:"very active online, spiritually absent offline"
-},
-{
-title:"🤯 Club Ka Jethalal Award",
-desc:"creates chaos, somehow lovable"
-},
-{
-title:"🤷‍♀️ Club Ki Alia Bhatt Award",
-desc:"present everywhere, understanding nowhere"
-},
-{
-title:"📈 Club Ka Mutual Fund Award",
-desc:"invests in every friendship for future benefits"
-},
-{
-title:"⏳ Club Ka Loading Screen Award",
-desc:"takes time to warm up socially"
-},
-{
-title:"🔋 Low Battery Human Award",
-desc:"social battery dies within 20 minutes"
-},
-{
-title:"🎭 Ye Sab Doglapan Hai Award",
-desc:"says 'I won’t come', arrives first"
-},
-{
-title:"🏠 Abba Nahi Manenge Award",
-desc:"rejects every plan dramatically"
-}
+  { title: "💘 District Event = Rishta Dekho Yojana Award", desc: "Attendance suspiciously high at district events 👀" },
+  { title: "🚿 Main Aa Raha Hoon Fiction Award", desc: "written by someone still in towel" },
+  { title: "📱 WhatsApp Pe Don, Ground Pe Gone Award", desc: "very active online, spiritually absent offline" },
+  { title: "🤯 Club Ka Jethalal Award", desc: "creates chaos, somehow lovable" },
+  { title: "🤷‍♀️ Club Ki Alia Bhatt Award", desc: "present everywhere, understanding nowhere" },
+  { title: "📈 Club Ka Mutual Fund Award", desc: "invests in every friendship for future benefits" },
+  { title: "⏳ Club Ka Loading Screen Award", desc: "takes time to warm up socially" },
+  { title: "🔋 Low Battery Human Award", desc: "social battery dies within 20 minutes" },
+  { title: "🎭 Ye Sab Doglapan Hai Award", desc: "says 'I won’t come', arrives first" },
+  { title: "🏠 Abba Nahi Manenge Award", desc: "rejects every plan dramatically" }
 ];
 
-const form=document.getElementById("form");
+const form = document.getElementById('form');
 
-awards.forEach((award,i)=>{
-  let label=document.createElement("label");
+awards.forEach((award, i) => {
+  const label = document.createElement('label');
+  label.innerHTML = `${i+1}. ${award.title}<span class='subtitle'>(${award.desc})</span>`;
 
-  label.innerHTML=
-  `${i+1}. ${award.title}
-   <span class="subtitle">${award.desc}</span>`;
-
-  let select=document.createElement("select");
-  select.id="award"+i;
-  select.onchange=updateDropdowns;
+  const select = document.createElement('select');
+  select.id = 'award' + i;
+  select.onchange = updateDropdowns;
 
   form.appendChild(label);
   form.appendChild(select);
 });
 
-function updateDropdowns(){
-  let selected=[];
+function updateDropdowns() {
+  let selected = [];
 
-  awards.forEach((_,i)=>{
-    const val=document.getElementById("award"+i).value;
-    if(val) selected.push(val);
+  awards.forEach((_, i) => {
+    const v = document.getElementById('award' + i).value;
+    if (v) selected.push(v);
   });
 
-  awards.forEach((_,i)=>{
-    const dd=document.getElementById("award"+i);
-    const current=dd.value;
+  awards.forEach((_, i) => {
+    const dd = document.getElementById('award' + i);
+    const current = dd.value;
 
-    dd.innerHTML =
-      '<option value="">Select nominee</option>';
+    dd.innerHTML = '<option value="">Select nominee</option>';
 
-    nominees.forEach(name=>{
-      if(!selected.includes(name) || name===current){
-        let option=document.createElement("option");
-        option.value=name;
-        option.text=name;
-
-        if(name===current){
-          option.selected=true;
-        }
-
-        dd.appendChild(option);
+    nominees.forEach(name => {
+      if (!selected.includes(name) || name === current) {
+        const o = document.createElement('option');
+        o.value = name;
+        o.text = name;
+        if (name === current) o.selected = true;
+        dd.appendChild(o);
       }
     });
   });
 
-  let percent=(selected.length/awards.length)*100;
-
-  document.getElementById("bar").style.width =
-    percent+"%";
-
-  document.getElementById("progressText").innerText =
-    `${selected.length}/10 completed`;
+  document.getElementById('bar').style.width = (selected.length / awards.length * 100) + '%';
+  document.getElementById('progressText').innerText = `${selected.length}/${awards.length}`;
 }
 
-function validEmail(email){
-  email = email.trim().toLowerCase();
+function submitVote() {
+  const email = document.getElementById('email').value.trim();
 
-  return email.includes("@") &&
-         email.includes(".") &&
-         email.length >= 5;
-}
-
-function submitVote(){
-
-  const btn=document.getElementById("submitBtn");
-  const msg=document.getElementById("msg");
-
-  const email =
-    document.getElementById("email")
-    .value
-    .trim()
-    .toLowerCase();
-
-  if(!validEmail(email)){
-    alert("Please enter valid email");
+  if (!email) {
+    alert('Please enter email');
     return;
   }
 
-  let votes=[];
+  let votes = [];
 
-  for(let i=0;i<awards.length;i++){
-    let value=document.getElementById("award"+i).value;
-
-    if(!value){
-      alert("Please complete all selections");
+  for (let i = 0; i < awards.length; i++) {
+    const v = document.getElementById('award' + i).value;
+    if (!v) {
+      alert('Please complete all award selections');
       return;
     }
-
-    votes.push(value);
+    votes.push(v);
   }
 
-  btn.disabled=true;
-  btn.innerText="Submitting...";
-  msg.innerText="";
-
-  fetch(SCRIPT_URL,{
-    method:"POST",
-    body:JSON.stringify({
-      email:email,
-      votes:votes
-    })
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify({ email, votes })
   })
-  .then(response=>response.json())
-  .then(data=>{
-    msg.innerText=data.message;
-    msg.style.color =
-      data.success ? "green" : "red";
-
-    if(data.success){
-      btn.innerText="Vote Submitted ✓";
-    }else{
-      btn.disabled=false;
-      btn.innerText="Submit Vote";
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById('msg').innerText = data.message;
+    document.getElementById('msg').style.color = data.success ? 'green' : 'red';
+    if (data.success) {
+      document.querySelector('button').disabled = true;
     }
   })
-  .catch(()=>{
-    msg.innerText="Submission failed";
-    msg.style.color="red";
-    btn.disabled=false;
-    btn.innerText="Submit Vote";
+  .catch(() => {
+    document.getElementById('msg').innerText = 'Error submitting vote';
+    document.getElementById('msg').style.color = 'red';
   });
 }
 
