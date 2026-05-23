@@ -6,7 +6,9 @@
 <title>E V O L V E – People's Choice Awards</title>
 
 <style>
-*{box-sizing:border-box;}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -66,6 +68,7 @@ input,select{
 input:focus,select:focus{
   outline:none;
   border-color:#6366f1;
+  box-shadow:0 0 0 3px rgba(99,102,241,.15);
 }
 
 .progress-wrap{
@@ -97,11 +100,17 @@ button{
   font-size:18px;
   font-weight:bold;
   cursor:pointer;
+  transition:.2s;
+}
+
+button:hover{
+  transform:translateY(-2px);
 }
 
 button:disabled{
   background:gray;
   cursor:not-allowed;
+  transform:none;
 }
 
 #msg{
@@ -111,7 +120,9 @@ button:disabled{
 }
 
 @media(max-width:768px){
-  .card{padding:20px;}
+  .card{
+    padding:20px;
+  }
 }
 </style>
 </head>
@@ -122,7 +133,11 @@ button:disabled{
   <h1>🏆 E V O L V E – People's Choice Awards 🏆</h1>
 
   <label>Your Email</label>
-  <input type="email" id="email" placeholder="Enter your email">
+  <input
+    type="email"
+    id="email"
+    placeholder="Enter your email"
+  >
 
   <div class="progress-wrap">
     <div id="progressText">0/10 completed</div>
@@ -133,24 +148,43 @@ button:disabled{
 
   <div id="form"></div>
 
-  <button id="submitBtn" onclick="submitVote()">Submit Vote</button>
+  <button id="submitBtn" onclick="submitVote()">
+    Submit Vote
+  </button>
 
   <div id="msg"></div>
 </div>
 
 <script>
 const SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbwxx0WRRMbx-8l98wX-3n-dGr1Iul4uRRHJ6HnrWiQTAE7xVDs_-UdREu6eZ-i1chcaTQ/exec";
-
+"https://script.google.com/macros/s/AKfycbwXC8KmkTPRFE8E9fLGcheodZdY_-R_MM7C78LdTPDERbybRX7xP_n6FSDrGCrF06gI/exec";
 
 const nominees = [
-"Salim Mulani","Dhiraj Nikam","Avanti Barhate","Nida Baig","Sahil Aghav",
-"ANUJ PAUL","Vedant Buge","Aniket Jagtap","Mrunal Bharati",
-"Abhijit Barangule","Siddharth Pattanshetti","Rishikesh Kadre",
-"Siddhant Thopate","Siddhesh Gaikwad","Ammar Shaikh",
-"Akanksha Solse","Bhakti Makhare","Shrikant Dhangar",
-"Annie Varhale","Onkar Dhame","Khushi Oswal",
-"Shrikant Kedari","Vaishnavi Thakur","Jay Agarwal","Nikhil Bhosale"
+  "Salim Mulani",
+  "Dhiraj Nikam",
+  "Avanti Barhate",
+  "Nida Baig",
+  "Sahil Aghav",
+  "ANUJ PAUL",
+  "Vedant Buge",
+  "Aniket Jagtap",
+  "Mrunal Bharati",
+  "Abhijit Barangule",
+  "Siddharth Pattanshetti",
+  "Rishikesh Kadre",
+  "Siddhant Thopate",
+  "Siddhesh Gaikwad",
+  "Ammar Shaikh",
+  "Akanksha Solse",
+  "Bhakti Makhare",
+  "Shrikant Dhangar",
+  "Annie Varhale",
+  "Onkar Dhame",
+  "Khushi Oswal",
+  "Shrikant Kedari",
+  "Vaishnavi Thakur",
+  "Jay Agarwal",
+  "Nikhil Bhosale"
 ];
 
 const awards = [
@@ -201,8 +235,8 @@ const form=document.getElementById("form");
 awards.forEach((award,i)=>{
   let label=document.createElement("label");
   label.innerHTML=
-    `${i+1}. ${award.title}
-     <span class="subtitle">${award.desc}</span>`;
+  `${i+1}. ${award.title}
+   <span class="subtitle">${award.desc}</span>`;
 
   let select=document.createElement("select");
   select.id="award"+i;
@@ -221,33 +255,43 @@ function updateDropdowns(){
   });
 
   awards.forEach((_,i)=>{
-    let dd=document.getElementById("award"+i);
-    let current=dd.value;
+    const dd=document.getElementById("award"+i);
+    const current=dd.value;
 
-    dd.innerHTML='<option value="">Select nominee</option>';
+    dd.innerHTML =
+      '<option value="">Select nominee</option>';
 
     nominees.forEach(name=>{
       if(!selected.includes(name) || name===current){
-        let o=document.createElement("option");
-        o.value=name;
-        o.text=name;
-        if(name===current) o.selected=true;
-        dd.appendChild(o);
+        let option=document.createElement("option");
+        option.value=name;
+        option.text=name;
+
+        if(name===current){
+          option.selected=true;
+        }
+
+        dd.appendChild(option);
       }
     });
   });
 
   let percent=(selected.length/awards.length)*100;
-  document.getElementById("bar").style.width=percent+"%";
-  document.getElementById("progressText").innerText =
+
+  document.getElementById("bar").style.width=
+    percent+"%";
+
+  document.getElementById("progressText").innerText=
     `${selected.length}/10 completed`;
 }
 
+/* FIXED EMAIL VALIDATION */
 function validEmail(email){
-  return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 function submitVote(){
+
   const btn=document.getElementById("submitBtn");
   const msg=document.getElementById("msg");
   const email=document.getElementById("email").value.trim();
@@ -260,12 +304,14 @@ function submitVote(){
   let votes=[];
 
   for(let i=0;i<awards.length;i++){
-    let v=document.getElementById("award"+i).value;
-    if(!v){
+    let value=document.getElementById("award"+i).value;
+
+    if(!value){
       alert("Please complete all selections");
       return;
     }
-    votes.push(v);
+
+    votes.push(value);
   }
 
   btn.disabled=true;
@@ -279,10 +325,11 @@ function submitVote(){
       votes:votes
     })
   })
-  .then(r=>r.json())
+  .then(response=>response.json())
   .then(data=>{
     msg.innerText=data.message;
-    msg.style.color=data.success ? "green":"red";
+    msg.style.color=
+      data.success ? "green" : "red";
 
     if(data.success){
       btn.innerText="Vote Submitted ✓";
