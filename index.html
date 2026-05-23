@@ -134,9 +134,10 @@ button:disabled{
 
   <label>Your Email</label>
   <input
-    type="email"
+    type="text"
     id="email"
     placeholder="Enter your email"
+    autocomplete="email"
   >
 
   <div class="progress-wrap">
@@ -234,6 +235,7 @@ const form=document.getElementById("form");
 
 awards.forEach((award,i)=>{
   let label=document.createElement("label");
+
   label.innerHTML=
   `${i+1}. ${award.title}
    <span class="subtitle">${award.desc}</span>`;
@@ -278,23 +280,31 @@ function updateDropdowns(){
 
   let percent=(selected.length/awards.length)*100;
 
-  document.getElementById("bar").style.width=
+  document.getElementById("bar").style.width =
     percent+"%";
 
-  document.getElementById("progressText").innerText=
+  document.getElementById("progressText").innerText =
     `${selected.length}/10 completed`;
 }
 
-/* FIXED EMAIL VALIDATION */
 function validEmail(email){
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  email = email.trim().toLowerCase();
+
+  return email.includes("@") &&
+         email.includes(".") &&
+         email.length >= 5;
 }
 
 function submitVote(){
 
   const btn=document.getElementById("submitBtn");
   const msg=document.getElementById("msg");
-  const email=document.getElementById("email").value.trim();
+
+  const email =
+    document.getElementById("email")
+    .value
+    .trim()
+    .toLowerCase();
 
   if(!validEmail(email)){
     alert("Please enter valid email");
@@ -328,7 +338,7 @@ function submitVote(){
   .then(response=>response.json())
   .then(data=>{
     msg.innerText=data.message;
-    msg.style.color=
+    msg.style.color =
       data.success ? "green" : "red";
 
     if(data.success){
